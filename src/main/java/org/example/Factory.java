@@ -45,8 +45,13 @@ public class Factory {
 
 
     public void produceChar(int sum) {
-
         char ascii = (char) sum;
+        printAscii(ascii);
+    }
+
+
+
+    public static void printAscii(char ascii){
         System.out.print("ascii: " + ascii);
         System.out.println("\n");
     }
