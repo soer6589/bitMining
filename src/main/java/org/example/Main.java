@@ -5,7 +5,7 @@ public class Main {
 
         Factory bitMining = new Factory();
 
-        bitMining.produceByte(6 );
+        bitMining.produceByte(6);
 
 
     }
