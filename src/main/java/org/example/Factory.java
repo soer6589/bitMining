@@ -11,30 +11,37 @@ public class Factory {
         Random bitRandom = new Random();
 
         int randomNr = bitRandom.nextInt(2) - 1;
-        boolean result = (randomNr == 0) ? false : true;
+        boolean result = (randomNr == 1) ? true : false;
 
         return result;
     }
 
 
     public void produceByte(int counter) {
-        boolean temp;
-        int sum = 0;
         int[] bitArray = new int[8];
 
         if (counter == 0) return;
+        int sum = fillArrayByte(bitArray);
+
+        System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + sum);
+        produceChar(sum);
+
+        counter--;
+        produceByte(counter);
+    }
+
+    public int fillArrayByte(int[] bitArray) {
+        boolean temp;
+        int sum = 0;
         for (int j = 0; j <= 7; j++) {
             if (temp = produceRandomBit() == true) {
                 sum += Math.pow(2, j);
             }
-            bitArray[j] = (temp==true) ? 1 : 0;
+            bitArray[j] = (temp == true) ? 1 : 0;
         }
-
-        System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + sum);
-        produceChar(sum);
-        counter--;
-        produceByte(counter);
+        return sum;
     }
+
 
 
     public void produceChar(int sum) {
