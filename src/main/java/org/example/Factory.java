@@ -11,7 +11,7 @@ public class Factory {
         Random bitRandom = new Random();
 
         int randomNr = bitRandom.nextInt(2) - 1;
-        boolean result = (randomNr == 1) ? true : false;
+        boolean result = (randomNr == 0) ? false : true;
 
         return result;
     }
