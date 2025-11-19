@@ -4,7 +4,7 @@ public class Main {
 
         Factory bitMining = new Factory();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             boolean temp;
             temp = bitMining.produceRandomBit();
 
