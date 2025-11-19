@@ -1,5 +1,8 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.Arrays;
 import java.util.Random;
 
 public class Factory {
@@ -14,4 +17,31 @@ public class Factory {
     }
 
 
+    public void produceByte(int counter) {
+        boolean temp;
+        int sum = 0;
+        int[] bitArray = new int[8];
+
+        if (counter == 0) return;
+        for (int j = 0; j <= 7; j++) {
+            if (temp = produceRandomBit() == true) {
+                sum += Math.pow(2, j);
+            }
+            bitArray[j] = temp ? 1 : 0;
+        }
+
+        System.out.println(Arrays.toString(bitArray) + sum);
+        counter--;
+        produceByte(counter);
+
+        produceChar(sum);
+    }
+
+
+    public void produceChar(int sum) {
+
+        char ascii = (char) sum;
+        System.out.print("ascii: " + ascii);
+        System.out.println();
+    }
 }
