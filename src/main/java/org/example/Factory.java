@@ -17,6 +17,7 @@ public class Factory {
     }
 
 
+
     public void produceByte(int counter) {
         int[] bitArray = new int[8];
 
@@ -29,6 +30,8 @@ public class Factory {
         counter--;
         produceByte(counter);
     }
+
+
 
     public int fillArrayByte(int[] bitArray) {
         boolean temp;
