@@ -14,7 +14,7 @@ public class Main {
         }
          */
 
-        bitMining.produceByte(4);
+        bitMining.produceByte(1);
 
 
     }
