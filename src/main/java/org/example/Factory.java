@@ -27,7 +27,7 @@ public class Factory {
             if (temp = produceRandomBit() == true) {
                 sum += Math.pow(2, j);
             }
-            bitArray[j] = temp ? 1 : 0;
+            bitArray[j] = (temp==true) ? 1 : 0;
         }
 
         System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + sum);
