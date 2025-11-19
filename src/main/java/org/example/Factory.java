@@ -30,11 +30,10 @@ public class Factory {
             bitArray[j] = temp ? 1 : 0;
         }
 
-        System.out.println(Arrays.toString(bitArray) + sum);
+        System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + sum);
+        produceChar(sum);
         counter--;
         produceByte(counter);
-
-        produceChar(sum);
     }
 
 
@@ -42,6 +41,6 @@ public class Factory {
 
         char ascii = (char) sum;
         System.out.print("ascii: " + ascii);
-        System.out.println();
+        System.out.println("\n");
     }
 }
