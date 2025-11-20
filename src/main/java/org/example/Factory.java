@@ -5,8 +5,12 @@ import org.w3c.dom.ls.LSOutput;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Class that creats a byteArray consisting of 8 randome bytes
+ * There are methods find the binaryValue of the Byte
+ * And method to convert the binaryValue to the ascii char
+ */
 public class Factory {
-
     /**
      * Recursion loop method that initialize the whole production of the byteArray
      *
