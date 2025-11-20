@@ -7,54 +7,104 @@ import java.util.Random;
 
 public class Factory {
 
-    public boolean produceRandomBit() {
-        Random bitRandom = new Random();
-
-        int randomNr = bitRandom.nextInt(2) - 1;
-        boolean result = (randomNr == 0) ? false : true;
-
-        return result;
-    }
-
-
-
+    /**
+     * Recursion loop method that initialize the whole production of the byteArray
+     *
+     * @param counter
+     */
     public void produceByte(int counter) {
-        int[] bitArray = new int[8];
+        int[] byteArray = new int[8];        //Creates array with 8 elemetens, because a byte is made of 8 bits
+        int sum = 0;
+        if (counter == 0) return;       //Base case for recursion loop
 
-        if (counter == 0) return;
-        int sum = fillArrayByte(bitArray);
-
-        System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + sum);
-        produceChar(sum);
+        fillArrayByte(byteArray);      //Method to fill the byte with 8 bits
+        sum = calculateByte(byteArray);      //Method call to find the value of the binary code
+        produceChar(sum);       //Method turn binary code to ascii char
 
         counter--;
-        produceByte(counter);
+        produceByte(counter);       //Recursion loop method call
     }
 
 
 
-    public int fillArrayByte(int[] bitArray) {
-        boolean temp;
-        int sum = 0;
-        for (int j = 0; j <= 7; j++) {
-            if (temp = produceRandomBit() == true) {
-                sum += Math.pow(2, j);
-            }
-            bitArray[j] = (temp == true) ? 1 : 0;
+    /**
+     * Fill byte array
+     *
+     * @param byteArray
+     */
+    public void fillArrayByte(int[] byteArray) {
+        for (int i = 0; i <= 7; i++) {
+            byteArray[i] = produceRandomBit();       //Call method 8 times to find randome number 8 times to fill out byteArray
         }
-        return sum;
     }
 
 
 
-    public void produceChar(int sum) {
-        char ascii = (char) sum;
-        printAscii(ascii);
+    /**
+     * Creates a randome number between 0-1 to simulate a bit (True/false)
+     *
+     * @return result (the bit)
+     */
+    public int produceRandomBit() {
+        Random bitRandom = new Random();
+
+        int randomNr = bitRandom.nextInt(2);
+        //boolean result = (randomNr == 0) ? false : true;        //Shorthand If to find if the bit is true or false
+
+        return randomNr;
     }
 
 
 
-    public static void printAscii(char ascii){
+    /**
+     * Method to find the binary value of the randome byteArray
+     *
+     * @param bitArray
+     * @return binaryValue
+     */
+    public int calculateByte(int[] bitArray) {
+        int binaryValue = 0;
+        for (int i = 0; i <= 7; i++) {
+            if (bitArray[i] == 1) {     //If statement to find all 'true' (1) in byteArray
+                binaryValue += Math.pow(2, i);      //Finding the binary value of the of all the on position of the byteArray
+            }
+        }
+        printArray(binaryValue, bitArray);      //Method call to print out the array + the binary value (binaryValue)
+        return binaryValue;
+    }
+
+
+
+    /**
+     * Method that prints out the byteArray and the binaryValue of the byteArray
+     *
+     * @param binaryValue
+     * @param bitArray
+     */
+    public void printArray(int binaryValue, int[] bitArray) {
+        System.out.println(Arrays.toString(bitArray) + " - Binary code is: " + binaryValue);        //Printing the bitArray + binary value(sum)
+    }
+
+
+
+    /**
+     * Method that finds the ascii char of the binaryValue
+     *
+     * @param binaryValue
+     */
+    public void produceChar(int binaryValue) {
+        char ascii = (char) binaryValue;        //Finding the ascii char from the binaryValue
+        printAscii(ascii);      //Method call to print out the ascii
+    }
+
+
+
+    /**
+     * Method that prints the found ascii char
+     *
+     * @param ascii
+     */
+    public void printAscii(char ascii) {
         System.out.print("ascii: " + ascii);
         System.out.println("\n");
     }
