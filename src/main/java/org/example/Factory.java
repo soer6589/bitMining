@@ -2,6 +2,7 @@ package org.example;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,24 +12,29 @@ import java.util.Random;
  * And method to convert the binaryValue to the ascii char
  */
 public class Factory {
+
+    StringBuilder sb = new StringBuilder();
+    int validNr = 0;
+    int invalidNr = 0;
+    ArrayList<Character> asciiSentence = new ArrayList<Character>();
+    int[] byteArray = new int[8];        //Creates array with 8 elemetens, because a byte is made of 8 bits
+
+
     /**
      * Recursion loop method that initialize the whole production of the byteArray
      *
      * @param counter
      */
     public void produceByte(int counter) {
-        int[] byteArray = new int[8];        //Creates array with 8 elemetens, because a byte is made of 8 bits
-        int sum = 0;
-        if (counter == 0) return;       //Base case for recursion loop
+        if (counter == 0) return;
+
 
         fillArrayByte(byteArray);      //Method to fill the byte with 8 bits
-        sum = calculateByte(byteArray);      //Method call to find the value of the binary code
-        produceChar(sum);       //Method turn binary code to ascii char
+        calculateByte(byteArray);      //Method call to find the value of the binary code
 
         counter--;
         produceByte(counter);       //Recursion loop method call
     }
-
 
 
     /**
@@ -41,7 +47,6 @@ public class Factory {
             byteArray[i] = produceRandomBit();       //Call method 8 times to find randome number 8 times to fill out byteArray
         }
     }
-
 
 
     /**
@@ -59,7 +64,6 @@ public class Factory {
     }
 
 
-
     /**
      * Method to find the binary value of the randome byteArray
      *
@@ -73,8 +77,28 @@ public class Factory {
                 binaryValue += Math.pow(2, i);      //Finding the binary value of the of all the on position of the byteArray
             }
         }
-        printArray(binaryValue, bitArray);      //Method call to print out the array + the binary value (binaryValue)
+        isLetterValid(binaryValue);
+        //printArray(binaryValue, bitArray);      //Method call to print out the array + the binary value (binaryValue)
         return binaryValue;
+    }
+
+
+    public int isLetterValid(int binaryValue) {
+        if (binaryValue >= 97 && binaryValue <= 122) {
+            printArray(binaryValue, byteArray);
+            produceChar(binaryValue);
+            validNr++;
+        } else {
+            produceByte(1);
+            invalidNr++;
+        }
+        return validNr + invalidNr;
+    }
+
+
+    public void goodOrBadCounter() {
+        System.out.printf("%d were valid numbers\n", validNr);
+        System.out.printf("%d were invalid\n", invalidNr);
     }
 
 
@@ -90,7 +114,6 @@ public class Factory {
     }
 
 
-
     /**
      * Method that finds the ascii char of the binaryValue
      *
@@ -98,9 +121,14 @@ public class Factory {
      */
     public void produceChar(int binaryValue) {
         char ascii = (char) binaryValue;        //Finding the ascii char from the binaryValue
+        sb.append(ascii);
         printAscii(ascii);      //Method call to print out the ascii
     }
 
+
+    public void stringBuilder () {
+        System.out.println(sb.toString());
+    }
 
 
     /**
