@@ -5,10 +5,8 @@ public class Main {
 
         Factory bitMining = new Factory();
 
-
         bitMining.produceByte(10);
         bitMining.goodOrBadCounter();
-
         bitMining.stringBuilder();
 
     }

@@ -28,7 +28,6 @@ public class Factory {
     public void produceByte(int counter) {
         if (counter == 0) return;
 
-
         fillArrayByte(byteArray);      //Method to fill the byte with 8 bits
         calculateByte(byteArray);      //Method call to find the value of the binary code
 
@@ -56,9 +55,7 @@ public class Factory {
      */
     public int produceRandomBit() {
         Random bitRandom = new Random();
-
         int randomNr = bitRandom.nextInt(2);
-        //boolean result = (randomNr == 0) ? false : true;        //Shorthand If to find if the bit is true or false
 
         return randomNr;
     }
@@ -78,7 +75,6 @@ public class Factory {
             }
         }
         isLetterValid(binaryValue);
-        //printArray(binaryValue, bitArray);      //Method call to print out the array + the binary value (binaryValue)
         return binaryValue;
     }
 
@@ -100,7 +96,6 @@ public class Factory {
         System.out.printf("%d were valid numbers\n", validNr);
         System.out.printf("%d were invalid\n", invalidNr);
     }
-
 
 
     /**
@@ -126,7 +121,7 @@ public class Factory {
     }
 
 
-    public void stringBuilder () {
+    public void stringBuilder() {
         System.out.println(sb.toString());
     }
 
